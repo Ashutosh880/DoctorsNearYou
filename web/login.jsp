@@ -4,6 +4,7 @@
     Author     : aashu
 --%>
 
+<%@page import="com.entities.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,7 @@
                                             </div>
                                         </li>-->
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="login.jsp" title="can not access this page please login first">Find Doctor</a>
+                        <a class="nav-link disabled" href="login.jsp" title="can not access this page please login first"><span class="fa fa-plus-square " ></span> Get Appointment</a>
                     </li>
                 </ul>
                 <div>
@@ -73,6 +74,19 @@
                             <br>
                             <h3> User Login</h3>
                         </div>
+
+                        <%
+                            Message m = (Message) session.getAttribute("msg");
+                            if (m != null) {
+                        %>
+                        <div class="alert <%= m.getCssClass() %>" role="alert">
+                            <%= m.getContent()%>
+                        </div>
+                        <%
+                            session.removeAttribute("msg");
+                            }
+                        %>
+
                         <div class="card-body ">
                             <form action="LoginServlet" method="post">
                                 <div class="form-group">

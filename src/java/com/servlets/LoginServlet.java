@@ -1,6 +1,7 @@
 package com.servlets;
 
 import com.dao.PatientDao;
+import com.entities.Message;
 import com.entities.Patient;
 import com.helper.ConnectionProvider;
 import java.io.IOException;
@@ -17,43 +18,37 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        PrintWriter out = response.getWriter();
-
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String type = request.getParameter("type");
 
         PatientDao pd = new PatientDao(ConnectionProvider.createConnection());
-
         Patient p = pd.getUserByEP(email, password, type);
 
         if (p == null) {
-            out.println("Invalid Details Try Again");
-            response.sendRedirect("error_page.jsp");
-           
-        } else {         
-         HttpSession s = request.getSession();
-         s.setAttribute("currentPatient", p);
-         
+            Message msg = new Message("Invalid Username and Password", "error", "alert-danger");
+            HttpSession s = request.getSession();
+            s.setAttribute("msg", msg);
+
+            response.sendRedirect("login.jsp");
+
+        } else {
+            HttpSession s = request.getSession();
+            s.setAttribute("currentPatient", p);
             switch (type) {
-                case "patient":{
-                    RequestDispatcher rd = request.getRequestDispatcher("patient.jsp");
-                    rd.forward(request, response);
-                        break;
-                    }
-                case "admin":{
-                    RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-                    rd.forward(request, response);
-                        break;
-                    }
-                case "doctor":{
-                    RequestDispatcher rd = request.getRequestDispatcher("doctor.jsp");
-                    rd.forward(request, response);
-                        break;
-                    }
-                default:
-                    response.sendRedirect("error_page.jsp");
+                case "patient": {
+                   response.sendRedirect("patient.jsp");
                     break;
+                }
+                case "admin": {
+                    response.sendRedirect("admin.jsp");
+                    break;
+                }
+                case "doctor": {
+                   response.sendRedirect("doctor.jsp");
+                    break;
+                }
+                default:
             }
 
         }

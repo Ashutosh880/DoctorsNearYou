@@ -26,7 +26,7 @@
                                     </div>
                                 </li>-->
             <li class="nav-item">
-                <a class="nav-link disabled" href="login.jsp" title="can not access this page please login first">Find Doctor</a>
+                <a class="nav-link disabled" href="login.jsp" title="can not access this page please login first"><span class="fa fa-plus-square " ></span> Get Appointment</a>
             </li>
         </ul>
         <div>

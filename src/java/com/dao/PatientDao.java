@@ -57,7 +57,7 @@ public class PatientDao {
                 patient.setEmail(rs.getString("email"));
                 patient.setPassword(rs.getString("password"));
                 patient.setType(rs.getString("type"));
-                
+                patient.setName(rs.getString("name"));
                 
                 
             }
