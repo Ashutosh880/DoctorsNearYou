@@ -8,6 +8,19 @@ public class Patient {
     private String address;
     private String password;
     private String type;
+    private String specialist;
+
+    
+
+    public Patient(String name, String number, String email, String address, String password, String type, String specialist) {
+        this.name = name;
+        this.number = number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.type = type;
+        this.specialist = specialist;
+    }
 
     public Patient(String name, String number, String email, String address, String password, String type) {
         this.name = name;
@@ -71,5 +84,11 @@ public class Patient {
     }
 
    
+public String getSpecialist() {
+        return specialist;
+    }
 
+    public void setSpecialist(String specialist) {
+        this.specialist = specialist;
+    }
 }

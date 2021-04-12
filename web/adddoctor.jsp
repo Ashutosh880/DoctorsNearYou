@@ -16,6 +16,7 @@
               rel="stylesheet">
         <link href="css/mystyle.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     </head>
     <style>
         .sidebar {
@@ -85,23 +86,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.jsp"><span class="fa fa-home" ></span> Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="form.html">Sign in</a>
-                    </li> -->
-
-                    <!--                    <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            </div>
-                                        </li>-->
+                  
                     <li class="nav-item">
-                        <a class="nav-link" href="adddoctor.jsp"><span class="fa fa-plus-square " ></span> Add Doctor</a>
+                        <a class="nav-link active" href="adddoctor.jsp"><span class="fa fa-plus-square " ></span> Add Doctor</a>
                     </li>
                 </ul>
                 <div>
@@ -110,11 +100,10 @@
             </div>
         </nav>
         <div>
-            <div class="sidebar">
-                <a class="active" href="#home">Home</a>
-                <a href="#news">News</a>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
+            <div class="sidebar bg-secondary">
+                <a href="#news"><p class="text-white">Update Doctor</p></a>
+                <a href="#contact"><p class="text-white">Delete Doctor</p></a>
+                <a href="#about"><p class="text-white">See Doctor Patient</p></a>
             </div>
 
             <!-- Page content -->
@@ -127,49 +116,48 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="DoctorServlet" method="post" id="reg-form">
+                            <form id="form" action="DoctorServlet" method="POST">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Name</label>
-                                        <input type="text" required class="form-control" id="inputEmail4" placeholder="Name">
+                                        <input type="text" required="required" name="name" class="form-control" id="inputEmail4" placeholder="Name">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Mobile</label>
-                                        <input type="text" required class="form-control" id="inputPassword4" placeholder="Mobile">
+                                        <input type="text" name="number" required class="form-control" id="inputPassword4" placeholder="Mobile">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="type">Specialization</label>
-                                        <select id="type" required class="form-control">
-                                            <option selected>Choose...</option>
-                                            <option selected>Neurologist</option>
-                                            <option>Rheumatologist</option>
-                                            <option>Immunologist</option>
-                                            <option>Nephrologist</option>
-                                            <option>Surgeon</option>
-                                            <option>Oncologist</option>
-                                            <option>Urologist</option>
-                                            <option>Radiologist</option>
-                                            <option>Cardiologist</option>
-                                            <option>Orthopedist</option>
-                                            <option>Dentist</option>
-                                            <option>ENT Specialist</option>
-                                            <option>Anestheologists</option>
-                                            <option>Gastroenterologist</option>
+                                        <select id="type" required class="form-control" name="specialist">
+                                            <option selected value="Neurologist">Neurologist</option>
+                                            <option value="Neurologist">Rheumatologist</option>
+                                            <option value="Neurologist">Immunologist</option>
+                                            <option value="Neurologist">Nephrologist</option>
+                                            <option value="Neurologist">Surgeon</option>
+                                            <option value="Neurologist">Oncologist</option>
+                                            <option value="Neurologist">Urologist</option>
+                                            <option value="Neurologist">Radiologist</option>
+                                            <option value="Neurologist">Cardiologist</option>
+                                            <option value="Neurologist">Orthopedist</option>
+                                            <option value="Neurologist">Dentist</option>
+                                            <option value="Neurologist">ENT Specialist</option>
+                                            <option value="Neurologist">Anestheologists</option>
+                                            <option value="Neurologist">Gastroenterologist</option>
                                             <option>Other</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail">Email</label>
-                                        <input type="email" required class="form-control" id="inputEmail" placeholder="Email">
+                                        <input type="email" name="email" required autocomplete="username" class="form-control" id="inputEmail" placeholder="Email">
                                     </div>
                                 </div>
                                  
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputAddress">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+                                        <input type="text" name="address" class="form-control" id="inputAddress" placeholder="Address">
                                     </div>
                                     <span><input type="hidden" name="user" id="user_doctor" value="doctor"></span>
                                     <div class="form-group col-md-6">
@@ -178,11 +166,11 @@
                                     </div>
 
                                 </div>
-                                 <div class="container text-center" id="loader" style="display: none;">
+<!--                                 <div class="container text-center" id="loader" style="display: none;">
                                     <span class="fa fa-refresh fa-spin fa-1.5x"></span>Please Wait........
-                                </div>
+                                </div>-->
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Add</button>
+                                    <button type="submit" id="submit" class="btn btn-primary">Add</button>
                                 </div>
                             </form>
 
@@ -207,63 +195,42 @@
         
         
         <script>
-            $(document).ready(function () {
-                console.log("loaded.....");
-                $('#reg-form').on('submit', function (event) {
+            $(document).ready(function(){
+                console.log("loaded")
+                
+                $('#form').on('submit',function(event){
                     event.preventDefault();
-
-                    $('#submit').hide();
-                    $('#loader').show();
-
+                    
+                    
                     let form = new FormData(this);
+                    
                     $.ajax({
-
-                        url: "RegistrationServlet",
-                        type: 'POST',
-                        data: form,
-                        success: function (data, testStatus, jqXHR) {
-                            console.log(data)
-
-                            $('#submit').show();
-                            $('#loader').hide();
-                            if (data.trim() == 'done')
-                            {
-                                swal({
-                                    title: "Patient Registered Succesfully",
-                                    text: "Please Login",
-                                    icon: "success",
-                                    button: "OK",
-                                }).then((value) => {
-                                    window.location = "login.jsp"
-                                });
-
-
-                            }else
-                            {
-                                swal("Patient Already Exist Please Login ").then((value)=>
-                                {
-                                   window.location="login.jsp" 
-                                });
-                            }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log(jqXHR)
-                            swal({
-                                title: "Something went Wrong",
-                                text: "Please check",
-                                icon: "success",
-                                button: "OK",
-                            })
-
-                        },
+                        
+                       url : "DoctorServlet",
+                       type:'POST',
+                       data: form,
+                       success:function(data, textStatus, jqXHR){
+                           console.log(data)
+                       },
+                       
+                       error: function(jqXHR, textStatus, errorThrown){
+                           console.log(jqXHR)
+                           
+                       },
                         processData: false,
                         contentType: false
-
                     });
+                    
+                    
                 });
-            }
-            );
-
+                
+            });
+            
+            
+            
         </script>
+        
+        
+        
     </body>
 </html>
