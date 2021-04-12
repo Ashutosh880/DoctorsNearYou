@@ -1,4 +1,4 @@
-<%-- 
+  <%-- 
     Document   : adddoctor
     Created on : 11 Apr, 2021, 5:11:08 PM
     Author     : aashu
@@ -6,6 +6,17 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.entities.Patient"%>
+<%@page import="java.sql.*"  %>
+<%@page import="com.helper.ConnectionProvider" %>
+<%
+    Patient patient = (Patient) session.getAttribute("currentPatient");
+    if (patient == null) {
+        response.sendRedirect("login.jsp");
+    }
+    
+String s = patient.getEmail();
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -87,9 +98,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp"><span class="fa fa-home" ></span> Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="admin.jsp"><span class="fa fa-home" ></span> Home <span class="sr-only">(current)</span></a>
                     </li>
-                  
+
                     <li class="nav-item">
                         <a class="nav-link active" href="adddoctor.jsp"><span class="fa fa-plus-square " ></span> Add Doctor</a>
                     </li>
@@ -132,20 +143,19 @@
                                         <label for="type">Specialization</label>
                                         <select id="type" required class="form-control" name="specialist">
                                             <option selected value="Neurologist">Neurologist</option>
-                                            <option value="Neurologist">Rheumatologist</option>
-                                            <option value="Neurologist">Immunologist</option>
-                                            <option value="Neurologist">Nephrologist</option>
-                                            <option value="Neurologist">Surgeon</option>
-                                            <option value="Neurologist">Oncologist</option>
-                                            <option value="Neurologist">Urologist</option>
-                                            <option value="Neurologist">Radiologist</option>
-                                            <option value="Neurologist">Cardiologist</option>
-                                            <option value="Neurologist">Orthopedist</option>
-                                            <option value="Neurologist">Dentist</option>
-                                            <option value="Neurologist">ENT Specialist</option>
-                                            <option value="Neurologist">Anestheologists</option>
-                                            <option value="Neurologist">Gastroenterologist</option>
-                                            <option>Other</option>
+                                            <option value="Rheumatologist">Rheumatologist</option>
+                                            <option value="Immunologist">Immunologist</option>
+                                            <option value="Nephrologist">Nephrologist</option>
+                                            <option value="Surgeon">Surgeon</option>
+                                            <option value="Oncologist">Oncologist</option>
+                                            <option value="Urologist">Urologist</option>
+                                            <option value="Radiologist">Radiologist</option>
+                                            <option value="Cardiologist">Cardiologist</option>
+                                            <option value="Orthopedist">Orthopedist</option>
+                                            <option value="Dentist">Dentist</option>
+                                            <option value="ENT Specialist">ENT Specialist</option>
+                                            <option value="Anestheologists">Anestheologists</option>
+                                            <option value="Gastroenterologist">Gastroenterologist</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
@@ -153,24 +163,51 @@
                                         <input type="email" name="email" required autocomplete="username" class="form-control" id="inputEmail" placeholder="Email">
                                     </div>
                                 </div>
-                                 
+
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="inputAddress">Address</label>
                                         <input type="text" name="address" class="form-control" id="inputAddress" placeholder="Address">
                                     </div>
+
+                                    <span><input type="hidden" name="admin" id="admin" value="<%= s%>"></span>
                                     <span><input type="hidden" name="user" id="user_doctor" value="doctor"></span>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-3">
                                         <label for="password">Password</label>
                                         <input type="password" autocomplete="current-password" class="form-control" name="password" id="password" placeholder="Password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label for="hname">Hospital Name</label>
+                                        <select id="hname" name="h_name" required class="form-control">
+
+                                            <option selected value="Arihant Hospital">Arihant Hospital</option>
+                                            <option value="Sai Hospital">Sai Hospital</option>
+                                            <option value="Apollo Hospital">Apollo Hospital</option>
+                                            <option value="Akash Hospital">Akash Hospital</option>
+                                            <option value="Devi Ahilya Cancer Hospital">Devi Ahilya Cancer Hospital</option>
+                                            <option value="Bapat Hospital">Bapat Hospital</option>
+                                            <option value="Charak Hospital">Charak Hospital</option>
+                                            <option value="Geetanjali Hospital">Geetanjali Hospital</option>
+                                            <option value="Bombay Hospital">Bombay Hospital</option>
+                                            <option value="CHL Hospital">CHL Hospital</option>
+                                            <option value="Choithram Hospital">Choithram Hospital</option>
+                                            <option value="Vishesh Hospital">Vishesh Hospital</option>
+                                            <option value="Gokuldas Hospital">Gokuldas Hospital</option>
+                                            <option value="Motherhood Hospital">Motherhood Hospital</option>
+
+                                        </select>
                                     </div>
 
                                 </div>
-<!--                                 <div class="container text-center" id="loader" style="display: none;">
-                                    <span class="fa fa-refresh fa-spin fa-1.5x"></span>Please Wait........
+                                <!--                                 <div class="container text-center" id="loader" style="display: none;">
+                                                                    <span class="fa fa-refresh fa-spin fa-1.5x"></span>Please Wait........
+                                          
                                 </div>-->
+                                <div class="text-center" id="loader" style="display: none;"><span class="fa fa-refresh fa-spin fa-1x"> </span> Please Wait......</div>
+
                                 <div class="text-center">
-                                    <button type="submit" id="submit" class="btn btn-primary">Add</button>
+                                    <button id="submit" type="submit"  class="btn btn-primary">Add</button>
                                 </div>
                             </form>
 
@@ -191,46 +228,66 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="js/myjs.js" type="text/javascript"></script>
-        
-        
-        
+
+
+
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
                 console.log("loaded")
-                
-                $('#form').on('submit',function(event){
+
+                $('#form').on('submit', function (event) {
                     event.preventDefault();
-                    
-                    
+
+
+
+
                     let form = new FormData(this);
-                    
+
+                    $("#submit").hide();
+                    $("#loader").show();
+
+
                     $.ajax({
-                        
-                       url : "DoctorServlet",
-                       type:'POST',
-                       data: form,
-                       success:function(data, textStatus, jqXHR){
-                           console.log(data)
-                       },
-                       
-                       error: function(jqXHR, textStatus, errorThrown){
-                           console.log(jqXHR)
-                           
-                       },
+
+                        url: "DoctorServlet",
+                        type: 'POST',
+                        data: form,
+                        success: function (data, textStatus, jqXHR) {
+                            console.log(data)
+
+
+                            $("#submit").show();
+                            $("#loader").hide();
+
+                            swal({
+                                title: "Doctor added succesfully",
+                                text: "Please Login",
+                                icon: "success",
+                                button: "OK",
+                            })
+
+                        },
+
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR)
+
+                            $("#submit").show();
+                            $("#loader").hide();
+                        },
                         processData: false,
                         contentType: false
                     });
-                    
-                    
+
+
                 });
-                
+
             });
-            
-            
-            
+
+
+
         </script>
-        
-        
-        
+
+
+
     </body>
 </html>

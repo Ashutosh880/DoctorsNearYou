@@ -1,6 +1,6 @@
 package com.entities;
 
-public class Patient {
+public class Doctor {
 
     private String name;
     private String number;
@@ -10,16 +10,9 @@ public class Patient {
     private String type;
     private String specialist;
     private String hname;
+    private String admin;
 
-    public String getHname() {
-        return hname;
-    }
-
-    public void setHname(String hname) {
-        this.hname = hname;
-    }
-
-    public Patient(String name, String number, String email, String address, String password, String type, String specialist, String hname) {
+    public Doctor(String name, String number, String email, String address, String password, String type, String specialist, String hname, String admin) {
         this.name = name;
         this.number = number;
         this.email = email;
@@ -28,32 +21,13 @@ public class Patient {
         this.type = type;
         this.specialist = specialist;
         this.hname = hname;
-    }
-    
-
-    public Patient(String name, String number, String email, String address, String password, String type, String specialist) {
-        this.name = name;
-        this.number = number;
-        this.email = email;
-        this.address = address;
-        this.password = password;
-        this.type = type;
-        this.specialist = specialist;
+        this.admin = admin;
     }
 
-    public Patient(String name, String number, String email, String address, String password, String type) {
-        this.name = name;
-        this.number = number;
-        this.email = email;
-        this.address = address;
-        this.password = password;
-        this.type = type;
+    public Doctor() {
+        
     }
 
-    public Patient() {
-    }
-
-//    getter and setter
     public String getName() {
         return name;
     }
@@ -102,12 +76,28 @@ public class Patient {
         this.type = type;
     }
 
-   
-public String getSpecialist() {
+    public String getSpecialist() {
         return specialist;
     }
 
     public void setSpecialist(String specialist) {
         this.specialist = specialist;
     }
+
+    public String getHname() {
+        return hname;
+    }
+
+    public void setHname(String hname) {
+        this.hname = hname;
+    }
+
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
 }

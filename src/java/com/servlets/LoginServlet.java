@@ -1,8 +1,8 @@
 package com.servlets;
 
-import com.dao.PatientDao;
+import com.dao.*;
 import com.entities.Message;
-import com.entities.Patient;
+import com.entities.*;
 import com.helper.ConnectionProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,32 +25,41 @@ public class LoginServlet extends HttpServlet {
         PatientDao pd = new PatientDao(ConnectionProvider.createConnection());
         Patient p = pd.getUserByEP(email, password, type);
 
-        if (p == null) {
+        Doctordao dd = new Doctordao(ConnectionProvider.createConnection());
+        Doctor d = dd.getUserByEP(email, password, type);
+
+        if (p == null && d==null) {
             Message msg = new Message("Invalid Username and Password", "error", "alert-danger");
             HttpSession s = request.getSession();
             s.setAttribute("msg", msg);
 
             response.sendRedirect("login.jsp");
 
-        } else {
+        }
+        else
+        if(p !=null)
+        {
             HttpSession s = request.getSession();
             s.setAttribute("currentPatient", p);
             switch (type) {
                 case "patient": {
-                   response.sendRedirect("patient.jsp");
+                    response.sendRedirect("patient.jsp");
                     break;
                 }
                 case "admin": {
                     response.sendRedirect("admin.jsp");
                     break;
                 }
-                case "doctor": {
-                   response.sendRedirect("doctor.jsp");
-                    break;
-                }
                 default:
             }
 
+        }
+        if(d !=null)
+        {
+            HttpSession s = request.getSession();
+            s.setAttribute("currentPatient", d);
+            
+            response.sendRedirect("doctor.jsp");
         }
 
     }

@@ -6,10 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.entities.Patient;
+import com.entities.Doctor;
 import com.dao.Doctordao;
 import com.helper.ConnectionProvider;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpSession;
 
 @MultipartConfig
 public class DoctorServlet extends HttpServlet {
@@ -27,12 +28,19 @@ public class DoctorServlet extends HttpServlet {
         String password = request.getParameter("password");
         String type = request.getParameter("user");
         String specialist = request.getParameter("specialist");
+        String hname = request.getParameter("h_name");
+        String admin = request.getParameter("admin");
         
-        Patient pt = new Patient(name,number,email,address,password,type,specialist);
+        Doctor dd = new Doctor(name,number,email,address,password,type,specialist,hname,admin);
         
-        Doctordao dd = new Doctordao(ConnectionProvider.createConnection());
-        if(dd.saveDoctor(pt))
+        
+        
+        Doctordao d = new Doctordao(ConnectionProvider.createConnection());
+        
+        
+        if(d.saveDoctor(dd))
         {
+           
             out.println("done");
         }
         else
