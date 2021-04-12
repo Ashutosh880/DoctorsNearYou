@@ -7,12 +7,14 @@
     if (patient == null) {
         response.sendRedirect("login.jsp");
     }
-    
+
 //Doctor doctor = (Doctor) session.getAttribute("currentPatient");
 //if(doctor==null)
 //{
 //    response
 //}
+
+
 %>
 
 
@@ -125,8 +127,8 @@
 
 
 
-
-<div>
+            <div>
+        
             <div class="sidebar bg-secondary">
                 <a href="#news"><p class="text-white">Update Doctor</p></a>
                 <a href="#contact"><p class="text-white">Delete Doctor</p></a>
@@ -134,14 +136,50 @@
             </div>
 
             <!-- Page content -->
-            <div class="content">
-                
+              <div class="content">
+            <table class="table table-bordered">
+                    <tr>
+                        <th>Name :</th>
+                        <th>Number :</th>
+                        <th>Email :</th>
+                        <th>Address :</th>
+                        <th>Specialist</th>
+                    </tr>
+                  
+            <tr>
+                    <%
+                        String query = "select name,number,email,address,specialist from alldoctor where admin=?";
+                        Connection conn = ConnectionProvider.createConnection();
+                        PreparedStatement pstmt = conn.prepareStatement(query);
+                        
+                        
+                        pstmt.setString(1,patient.getEmail());
+                        
+                        ResultSet rs = pstmt.executeQuery();
+                        while (rs.next()) {
 
+                    %>
+            </tr>
+                    <tr>
+                    <td><%=rs.getString("name")%></td>
+                    <td><%=rs.getString("number")%></td>
+                    <td><%=rs.getString("email")%></td>
+                    <td><%=rs.getString("address")%></td>
+                    <td><%=rs.getString("specialist")%></td>
+                    </tr>
+                    <%
+
+                        }
+                    %>
+               
+           
+
+            </table>
+            
+        
+
+              </div>
             </div>
-        </div>
-
-
-
 
         <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
