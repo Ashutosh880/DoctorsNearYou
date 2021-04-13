@@ -46,7 +46,7 @@ public class PatientDao {
             pstmt.setString(1, email);
             pstmt.setString(2, password);
             pstmt.setString(3, type);
-            
+                    
             ResultSet rs = pstmt.executeQuery();
             
             if(rs.next())
@@ -58,6 +58,8 @@ public class PatientDao {
                 patient.setPassword(rs.getString("password"));
                 patient.setType(rs.getString("type"));
                 patient.setName(rs.getString("name"));
+                patient.setNumber(rs.getString("number"));
+                patient.setBlood_group(rs.getString("blood_group"));
                 
                 
             }

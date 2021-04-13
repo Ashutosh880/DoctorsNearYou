@@ -10,7 +10,31 @@ public class Patient {
     private String type;
     private String specialist;
     private String hname;
+    private String blood_group;
 
+    public String getBlood_group() {
+        return blood_group;
+    }
+
+    public void setBlood_group(String blood_group) {
+        this.blood_group = blood_group;
+    }
+
+    public Patient(String name, String number, String email, String address, String password, String type, String specialist, String hname, String blood_group) {
+        this.name = name;
+        this.number = number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.type = type;
+        this.specialist = specialist;
+        this.hname = hname;
+        this.blood_group = blood_group;
+    }
+    
+    
+    
+    
     public String getHname() {
         return hname;
     }

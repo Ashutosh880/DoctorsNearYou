@@ -112,8 +112,8 @@ String s = patient.getEmail();
         </nav>
         <div>
             <div class="sidebar bg-secondary">
-                <a href="#news"><p class="text-white">Update Doctor</p></a>
-                <a href="#contact"><p class="text-white">Delete Doctor</p></a>
+                <a href="updatedoctor.jsp"><p class="text-white">Update Doctor</p></a>
+                <a href="deletedoctor.jsp"><p class="text-white">Delete Doctor</p></a>
                 <a href="#about"><p class="text-white">See Doctor Patient</p></a>
             </div>
 
@@ -258,14 +258,22 @@ String s = patient.getEmail();
 
                             $("#submit").show();
                             $("#loader").hide();
-
-                            swal({
-                                title: "Doctor added succesfully",
-                                text: "Please Login",
-                                icon: "success",
-                                button: "OK",
-                            })
-
+                              if(data.trim()=='done')
+                                  {
+                                swal({
+                                    title: "Doctor Registered Succesfully",
+                                    text: "Add more! Thanku",
+                                    icon: "success",
+                                    button: "OK",
+                                })
+                            }else
+                            {
+                                swal("Doctor Already Exist Please Add Diferent ").then((value)=>
+                                {
+                                   window.location="adddoctor.jsp" 
+                                });
+                            }
+                           
                         },
 
                         error: function (jqXHR, textStatus, errorThrown) {

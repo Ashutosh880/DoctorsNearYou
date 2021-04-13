@@ -80,7 +80,7 @@
                                     <div class="form-group col-md-6">
                                         <span class="text-danger">*</span>
                                         <label for="mobile">Mobile No.</label>
-                                        <input type="tel" class="form-control" name="number" id="mobile" pattern="[789][0-9]{9}" placeholder="10 digit number" required="required">
+                                        <input type="tel" class="form-control" name="number" id="mobile" pattern="[6789][0-9]{9}" placeholder="10 digit number" required="required">
                                     </div>
                                 </div>
                                 <div class="form-group">

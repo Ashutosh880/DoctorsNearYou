@@ -110,7 +110,7 @@
                                         <input type="radio" name="type" id="c" value="doctor" required="required">
                                         <label for="c">Doctor</label>
                                     </span>
-                                    <span class="mt-2">
+                                    <span class="ml-2">
                                         <input type="radio" name="type" id="v" value="patient" required="required">
                                         <label for="v">Patient</label></span>
                                 </div>
