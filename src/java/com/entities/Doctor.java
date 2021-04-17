@@ -11,6 +11,28 @@ public class Doctor {
     private String specialist;
     private String hname;
     private String admin;
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Doctor(String name, String number, String email, String address, String password, String type, String specialist, String hname, String admin, String city) {
+        this.name = name;
+        this.number = number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.type = type;
+        this.specialist = specialist;
+        this.hname = hname;
+        this.admin = admin;
+        this.city = city;
+    }
 
     public Doctor(String name, String number, String email, String address, String password, String type, String specialist, String hname, String admin) {
         this.name = name;

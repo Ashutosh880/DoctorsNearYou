@@ -11,6 +11,37 @@ public class Patient {
     private String specialist;
     private String hname;
     private String blood_group;
+    private String blood_pressure;
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getBlood_pressure() {
+        return blood_pressure;
+    }
+
+    public void setBlood_pressure(String blood_pressure) {
+        this.blood_pressure = blood_pressure;
+    }
+
+    public Patient(String name, String number, String email, String address, String password, String type, String specialist, String hname, String blood_group, String blood_pressure) {
+        this.name = name;
+        this.number = number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.type = type;
+        this.specialist = specialist;
+        this.hname = hname;
+        this.blood_group = blood_group;
+        this.blood_pressure = blood_pressure;
+    }
 
     public String getBlood_group() {
         return blood_group;

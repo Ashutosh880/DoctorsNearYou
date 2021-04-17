@@ -1,10 +1,3 @@
-<%-- 
-    Document   : patient
-    Created on : 13 Apr, 2021, 1:13:02 PM
-    Author     : aashu
---%>
-
-
 <%@page import="com.entities.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error_page.jsp" %>
@@ -245,7 +238,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="searchhospital.jsp"><span class="fa fa-plus-square " ></span> Get Appointment</a>
+                        <a class="nav-link" href="nearhospitals.jsp"><span class="fa fa-plus-square " ></span> Get Appointment</a>
                     </li>
                 </ul>
                 <div>
@@ -258,7 +251,8 @@
         <div>
 
             <div class="sidebar bg-secondary">
-                <a href="searchhospital.jsp"><p class="text-white">Search Near Hospital</p></a>
+                <a href="nearhospitals.jsp"><p class="text-white">Search Near Hospital</p></a>
+               
                 <!--<a href="#about"><p class="text-white">See Doctor Patient</p></a>-->
             </div>
 
@@ -266,61 +260,35 @@
             <div class="content">
 
 
-
-                <div class="padding col-md mt-5">
-                    <div class="row container d-flex justify-content-center">
-                        <div class="container">
-                            <div class="card user-card-full">
-                                <div class="row m-l-0 m-r-0">
-                                    <div class="col-sm-4 bg-c-lite-green user-profile">
-                                        <div class="card-block text-center text-white">
-                                            <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> </div>
-                                            <h6 class="f-w-600"><%=patient.getName()%></h6>
-                                            <p><%=patient.getType()%></p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="card-block">
-                                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Email</p>
-                                                    <h6 class="text-muted f-w-400"><%=patient.getEmail()%></h6>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Phone</p>
-                                                    <h6 class="text-muted f-w-400"><%=patient.getNumber()%></h6>
-                                                </div>
-                                            </div>
-                                            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Patient Detail</h6>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Blood Group</p>
-                                                    <h6 class="text-muted f-w-400"><%=patient.getBlood_group()%></h6>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Blood Pressure</p>
-                                                    <h6 class="text-muted f-w-400"><%=patient.getBlood_pressure()%></h6>
-                                                </div>
-                                            </div>
-                                            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Address Detail</h6>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Home Address</p>
-                                                    <h6 class="text-muted f-w-400"><%=patient.getAddress()%></h6>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">City</p>
-                                                    <h6 class="text-muted f-w-400"><%=patient.getCity()%></h6>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="container text-center mt-5 col-md-3">
+                    <form action="nearhospitals.jsp" method="Post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter City</label>
+                        <input type="text" class="form-control" name="city" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="city name">
                     </div>
+                    <div class="form-group">
+                        <label for="hname">Hospital Name</label>
+                        <select id="hname" name="hname" required class="form-control">
+
+                            <option selected value="Arihant Hospital">Arihant Hospital</option>
+                            <option value="Sai Hospital">Sai Hospital</option>
+                            <option value="Apollo Hospital">Apollo Hospital</option>
+                            <option value="Akash Hospital">Akash Hospital</option>
+                            <option value="Devi Ahilya Cancer Hospital">Devi Ahilya Cancer Hospital</option>
+                            <option value="Bapat Hospital">Bapat Hospital</option>
+                            <option value="Charak Hospital">Charak Hospital</option>
+                            <option value="Geetanjali Hospital">Geetanjali Hospital</option>
+                            <option value="Bombay Hospital">Bombay Hospital</option>
+                            <option value="CHL Hospital">CHL Hospital</option>
+                            <option value="Choithram Hospital">Choithram Hospital</option>
+                            <option value="Vishesh Hospital">Vishesh Hospital</option>
+                            <option value="Gokuldas Hospital">Gokuldas Hospital</option>
+                            <option value="Motherhood Hospital">Motherhood Hospital</option>
+
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
                 </div>
             </div>
 

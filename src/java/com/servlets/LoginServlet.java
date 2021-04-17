@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
         if(d !=null)
         {
             HttpSession s = request.getSession();
-            s.setAttribute("currentPatient", d);
+            s.setAttribute("currentDoctor", d);
             
             response.sendRedirect("doctor.jsp");
         }
