@@ -14,7 +14,7 @@
         response.sendRedirect("login.jsp");
     }
 
-   
+    String email1 = request.getParameter("u");
 %>
 <!DOCTYPE html>
 <html>
@@ -81,7 +81,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,400;1,300&display=swap"
               rel="stylesheet">
@@ -129,7 +129,7 @@
 
         <div>
             <div class="sidebar bg-secondary">
-                <a href="adddoctor.jsp"><p class="text-white">Add Doctor</p></a>
+                <a class="nav-link text-white" href="adddoctor.jsp"><span class="fa fa-plus-square text-white" ></span> Add Doctor</a>
                 <a href="deletedoctor.jsp"><p class="text-white">Delete Doctor</p></a>
                 <a href="doctorpatient.jsp"><p class="text-white">See Doctor Patient</p></a>
             </div>
@@ -182,7 +182,7 @@
                                     <div class="form-group col-md-6">
                                         <span class="text-danger">*</span>
                                         <label for="inputEmail">Email</label>
-                                        <input type="email" name="email" required autocomplete="username" class="form-control" id="inputEmail" placeholder="Email">
+                                        <input type="email" name="email" autocomplete="username" class="form-control" id="inputEmail" value="<%=email1%>" readonly="">
                                         <small id="emailHelp" class="form-text text-muted">old email should be applicable only</small>
                                     </div>
                                 </div>

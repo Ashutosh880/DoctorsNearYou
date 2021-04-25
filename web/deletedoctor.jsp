@@ -134,80 +134,82 @@
 
         <div>
             <div class="sidebar bg-secondary">
-                <a href="adddoctor.jsp"><p class="text-white">Add Doctor</p></a>
-                <a href="updatedoctor.jsp"><p class="text-white">Delete Doctor</p></a>
+                <a class="nav-link text-white" href="adddoctor.jsp"><span class="fa fa-plus-square text-white" ></span> Add Doctor</a>
+
                 <a href="doctorpatient.jsp"><p class="text-white">See Doctor Patient</p></a>
             </div>
 
             <!-- Page content -->
             <div class="content">
-<%
-                            Message m = (Message) session.getAttribute("msg");
-                            if (m != null) {
-                        %>
-                        <div class="alert <%= m.getCssClass() %>" role="alert">
-                            <%= m.getContent()%>
-                        </div>
-                        <%
-                            session.removeAttribute("msg");
-                            }
-                        %>
-<!--                <h2 class="text-center">Search Doctor You Want To Delete</h2>
-                <div class="input-group container mt-5 col-md-3 text-center">
-                    <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search"
-                           aria-describedby="search-addon">
-                    <button type="button" class="btn btn-outline-success ml-1"> search</button>
-                    <small id="emailHelp" class="form-text text-muted">Enter email address of doctor you want to delete</small>
-                </div> -->
-                
-<table class="table table-bordered">
+                <%
+                    Message m = (Message) session.getAttribute("msg");
+                    if (m != null) {
+                %>
+                <div class="alert <%= m.getCssClass()%>" role="alert">
+                    <%= m.getContent()%>
+                </div>
+                <%
+                        session.removeAttribute("msg");
+                    }
+                %>
+                <!--                <h2 class="text-center">Search Doctor You Want To Delete</h2>
+                                <div class="input-group container mt-5 col-md-3 text-center">
+                                    <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                           aria-describedby="search-addon">
+                                    <button type="button" class="btn btn-outline-success ml-1"> search</button>
+                                    <small id="emailHelp" class="form-text text-muted">Enter email address of doctor you want to delete</small>
+                                </div> -->
+
+                <table class="table table-bordered">
                     <tr>
                         <th>Name :</th>
                         <th>Number :</th>
                         <th>Email :</th>
                         <th>Address :</th>
                         <th>Specialist</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
-                  
-            <tr>
-                    <%
-                        String query = "select name,number,email,address,specialist from alldoctor where admin=?";
-                        Connection conn = ConnectionProvider.createConnection();
-                        PreparedStatement pstmt = conn.prepareStatement(query);
-                        
-                        
-                        pstmt.setString(1,patient.getEmail());
-                        
-                        ResultSet rs = pstmt.executeQuery();
-                        while (rs.next()) {
 
-                    %>
-            </tr>
                     <tr>
-                    <td><%=rs.getString("name")%></td>
-                    <td><%=rs.getString("number")%></td>
-                    <td><%=rs.getString("email")%></td>
-                    <td><%=rs.getString("address")%></td>
-                    <td><%=rs.getString("specialist")%></td>
-                    <td>
-                        <a href="doctordelete.jsp?u=<%=rs.getString("Email")%>" class="btn btn-danger">Delete</a>
-                    </td>
+                        <%
+                            String query = "select name,number,email,address,specialist from alldoctor where admin=?";
+                            Connection conn = ConnectionProvider.createConnection();
+                            PreparedStatement pstmt = conn.prepareStatement(query);
+
+                            pstmt.setString(1, patient.getEmail());
+
+                            ResultSet rs = pstmt.executeQuery();
+                            while (rs.next()) {
+
+                        %>
+                    </tr>
+                    <tr>
+                        <td><%=rs.getString("name")%></td>
+                        <td><%=rs.getString("number")%></td>
+                        <td><%=rs.getString("email")%></td>
+                        <td><%=rs.getString("address")%></td>
+                        <td><%=rs.getString("specialist")%></td>
+                        <td class="text-center">
+                            <a href="doctordelete.jsp?u=<%=rs.getString("Email")%>" class="btn btn-danger">Delete</a>
+                            <a href="updatedoctor.jsp?u=<%=rs.getString("Email")%>" class="btn btn-success">Update</a>
+                        </td>
+
+
+
                     </tr>
                     <%
 
                         }
                     %>
-               
-           
 
-            </table>
+
+
+                </table>
 
 
             </div>
-              
+
         </div>
-    
 
 
 
@@ -215,12 +217,13 @@
 
 
 
-    <script
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/myjs.js" type="text/javascript"></script>
-</body>
+
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="js/myjs.js" type="text/javascript"></script>
+    </body>
 </html>

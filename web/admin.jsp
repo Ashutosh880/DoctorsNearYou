@@ -103,9 +103,9 @@
                         <a class="nav-link" href="index.jsp"><span class="fa fa-home" ></span> Home <span class="sr-only">(current)</span></a>
                     </li>
                     
-                    <li class="nav-item">
+<!--                    <li class="nav-item">
                         <a class="nav-link" href="adddoctor.jsp"><span class="fa fa-plus-square " ></span> Add Doctor</a>
-                    </li>
+                    </li>-->
                 </ul>
                 <div>
                     <a class="btn btn-outline-success" href="LogoutServlet" role="button">Logout</a>
@@ -119,8 +119,8 @@
             <div>
         
             <div class="sidebar bg-secondary">
-                <a href="updatedoctor.jsp"><p class="text-white">Update Doctor</p></a>
-                <a href="#contact"><p class="text-white">Delete Doctor</p></a>
+                <a class="nav-link text-white" href="adddoctor.jsp"><span class="fa fa-plus-square text-white" ></span> Add Doctor</a>
+                <a href="deletedoctor.jsp"><p class="text-white">Update and Delete Doctor</p></a>
                 <a href="#about"><p class="text-white">See Doctor Patient</p></a>
             </div>
 

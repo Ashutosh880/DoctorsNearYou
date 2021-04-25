@@ -1,20 +1,22 @@
-  <%-- 
-    Document   : adddoctor
-    Created on : 11 Apr, 2021, 5:11:08 PM
-    Author     : aashu
+<%-- 
+  Document   : adddoctor
+  Created on : 11 Apr, 2021, 5:11:08 PM
+  Author     : aashu
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.entities.Patient"%>
 <%@page import="java.sql.*"  %>
 <%@page import="com.helper.ConnectionProvider" %>
+<%@page errorPage="error_page.jsp" %>
 <%
     Patient patient = (Patient) session.getAttribute("currentPatient");
     if (patient == null) {
         response.sendRedirect("login.jsp");
     }
-    
-String s = patient.getEmail();
+
+    String s = patient.getEmail();
+    String t = patient.getHname();
 %>
 
 <!DOCTYPE html>
@@ -101,9 +103,7 @@ String s = patient.getEmail();
                         <a class="nav-link" href="admin.jsp"><span class="fa fa-home" ></span> Home <span class="sr-only">(current)</span></a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="adddoctor.jsp"><span class="fa fa-plus-square " ></span> Add Doctor</a>
-                    </li>
+                   
                 </ul>
                 <div>
                     <a class="btn btn-outline-success" href="LogoutServlet" role="button">Logout</a>
@@ -112,8 +112,7 @@ String s = patient.getEmail();
         </nav>
         <div>
             <div class="sidebar bg-secondary">
-                <a href="updatedoctor.jsp"><p class="text-white">Update Doctor</p></a>
-                <a href="deletedoctor.jsp"><p class="text-white">Delete Doctor</p></a>
+                <a href="deletedoctor.jsp"><p class="text-white">Update and Delete Doctor</p></a>
                 <a href="#about"><p class="text-white">See Doctor Patient</p></a>
             </div>
 
@@ -130,16 +129,19 @@ String s = patient.getEmail();
                             <form id="form" action="DoctorServlet" method="POST">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
+                                        <span class="text-danger">*</span>
                                         <label for="inputEmail4">Name</label>
                                         <input type="text" required="required" name="name" class="form-control" id="inputEmail4" placeholder="Name">
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <span class="text-danger">*</span>
                                         <label for="inputPassword4">Mobile</label>
                                         <input type="text" name="number" required class="form-control" id="inputPassword4" placeholder="Mobile">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
+                                        <span class="text-danger">*</span>
                                         <label for="type">Specialization</label>
                                         <select id="type" required class="form-control" name="specialist">
                                             <option selected value="Neurologist">Neurologist</option>
@@ -159,46 +161,29 @@ String s = patient.getEmail();
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <span class="text-danger">*</span>
                                         <label for="inputEmail">Email</label>
                                         <input type="email" name="email" required autocomplete="username" class="form-control" id="inputEmail" placeholder="Email">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-6">
+                                        <span class="text-danger">*</span>
                                         <label for="inputAddress">Address</label>
                                         <input type="text" name="address" class="form-control" id="inputAddress" placeholder="Address">
                                     </div>
 
-                                    <span><input type="hidden" name="admin" id="admin" value="<%= s%>"></span>
+                                    <span><input type="hidden" name="admin" id="admin" value="<%=s%>"></span>
+                                    <span><input type="hidden" name="hname" id="hname" value="<%=t%>"></span>
+                                    <span><input type="hidden" name="hname" id="hadd" value="<%=patient.getAddress()%>"></span>
                                     <span><input type="hidden" name="user" id="user_doctor" value="doctor"></span>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-6">
+                                        <span class="text-danger">*</span>
                                         <label for="password">Password</label>
                                         <input type="password" autocomplete="current-password" class="form-control" name="password" id="password" placeholder="Password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
 
                                     </div>
-                                    <div class="form-group col-md-5">
-                                        <label for="hname">Hospital Name</label>
-                                        <select id="hname" name="h_name" required class="form-control">
-
-                                            <option selected value="Arihant Hospital">Arihant Hospital</option>
-                                            <option value="Sai Hospital">Sai Hospital</option>
-                                            <option value="Apollo Hospital">Apollo Hospital</option>
-                                            <option value="Akash Hospital">Akash Hospital</option>
-                                            <option value="Devi Ahilya Cancer Hospital">Devi Ahilya Cancer Hospital</option>
-                                            <option value="Bapat Hospital">Bapat Hospital</option>
-                                            <option value="Charak Hospital">Charak Hospital</option>
-                                            <option value="Geetanjali Hospital">Geetanjali Hospital</option>
-                                            <option value="Bombay Hospital">Bombay Hospital</option>
-                                            <option value="CHL Hospital">CHL Hospital</option>
-                                            <option value="Choithram Hospital">Choithram Hospital</option>
-                                            <option value="Vishesh Hospital">Vishesh Hospital</option>
-                                            <option value="Gokuldas Hospital">Gokuldas Hospital</option>
-                                            <option value="Motherhood Hospital">Motherhood Hospital</option>
-
-                                        </select>
-                                    </div>
-
                                 </div>
                                 <!--                                 <div class="container text-center" id="loader" style="display: none;">
                                                                     <span class="fa fa-refresh fa-spin fa-1.5x"></span>Please Wait........
@@ -258,22 +243,22 @@ String s = patient.getEmail();
 
                             $("#submit").show();
                             $("#loader").hide();
-                              if(data.trim()=='done')
-                                  {
+                            if (data.trim() == 'done')
+                            {
                                 swal({
                                     title: "Doctor Registered Succesfully",
                                     text: "Add more! Thanku",
                                     icon: "success",
                                     button: "OK",
                                 })
-                            }else
+                            } else
                             {
-                                swal("Doctor Already Exist Please Add Diferent ").then((value)=>
+                                swal("Doctor Already Exist Please Add Diferent ").then((value) =>
                                 {
-                                   window.location="adddoctor.jsp" 
+                                    window.location = "adddoctor.jsp"
                                 });
                             }
-                           
+
                         },
 
                         error: function (jqXHR, textStatus, errorThrown) {

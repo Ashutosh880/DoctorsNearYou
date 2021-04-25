@@ -16,6 +16,18 @@
         <servlet-name>DoctorServlet</servlet-name>
         <servlet-class>com.servlets.DoctorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetTime</servlet-name>
+        <servlet-class>com.servlets.SetTime</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTime</servlet-name>
+        <servlet-class>com.servlets.UpdateTime</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorAdd</servlet-name>
+        <servlet-class>com.servlets.DoctorAdd</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/RegistrationServlet</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>DoctorServlet</servlet-name>
         <url-pattern>/DoctorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetTime</servlet-name>
+        <url-pattern>/SetTime</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTime</servlet-name>
+        <url-pattern>/UpdateTime</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorAdd</servlet-name>
+        <url-pattern>/DoctorAdd</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

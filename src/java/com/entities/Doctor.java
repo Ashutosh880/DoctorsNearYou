@@ -12,7 +12,40 @@ public class Doctor {
     private String hname;
     private String admin;
     private String city;
+    private String hadd;
 
+    public Doctor(String name, String number, String email, String haddress, String password, String specialist, String home, String city) {
+        this.name = name;
+        this.number = number;
+        this.email = email;
+        this.address = haddress;
+        this.password = password;
+        this.specialist = specialist;
+        this.hname = home;
+        this.city = city;
+    }
+
+    public String getHadd() {
+        return hadd;
+    }
+
+    public void setHadd(String hadd) {
+        this.hadd = hadd;
+    }
+
+    public Doctor(String name, String number, String email, String address, String password, String type, String specialist, String hname, String admin, String city, String hadd) {
+        this.name = name;
+        this.number = number;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.type = type;
+        this.specialist = specialist;
+        this.hname = hname;
+        this.admin = admin;
+        this.city = city;
+        this.hadd = hadd;
+    }
     public String getCity() {
         return city;
     }

@@ -12,8 +12,7 @@
     if (patient == null) {
         response.sendRedirect("login.jsp");
 
-        String p = patient.getBlood_group();
-        String b = patient.getName();
+       
     }
 %>
 <!DOCTYPE html>
@@ -221,7 +220,7 @@
                 transition: all 0.3s ease-in-out
             }
         </style>
-        
+  
     </head>
     <body style="background-image: url(image/img10.jpg); background-repeat: no-repeat;background-size: 100%">
         
@@ -241,9 +240,7 @@
                         <a class="nav-link" href="patient.jsp"><span class="fa fa-home" ></span> Home <span class="sr-only">(current)</span></a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="searchhospital.jsp"><span class="fa fa-plus-square " ></span> Get Appointment</a>
-                    </li>
+                   
                 </ul>
                 <div>
                     <a class="btn btn-outline-success" href="LogoutServlet" role="button">Logout</a>
@@ -251,43 +248,7 @@
             </div>
         </nav>
         
-        
-        
-        
-        
-            <div class="container">
-      <table class="table table-dark">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Monday</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">Tuesday</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">Wednesday</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
- 
-</table>
-            </div>
+       
           <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

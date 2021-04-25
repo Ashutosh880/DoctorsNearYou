@@ -5,6 +5,10 @@
 --%>
 
 
+<%@page import="com.helper.ConnectionProvider"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="com.entities.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error_page.jsp" %>
@@ -13,9 +17,6 @@
     Patient patient = (Patient) session.getAttribute("currentPatient");
     if (patient == null) {
         response.sendRedirect("login.jsp");
-
-        String p = patient.getBlood_group();
-        String b = patient.getName();
     }
 %>
 <!DOCTYPE html>
@@ -245,7 +246,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="searchhospital.jsp"><span class="fa fa-plus-square " ></span> Get Appointment</a>
+                        <!--                        <a class="nav-link" href="searchhospital.jsp"><span class="fa fa-plus-square " ></span> Get Appointment</a>-->
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
+                            Get Appointment
+                        </button>
+
                     </li>
                 </ul>
                 <div>
@@ -254,11 +259,55 @@
             </div>
         </nav>
 
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Search Hospitals</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    <form action="nearhospitals.jsp" method="Post">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enter City</label>
+                            <input type="text" class="form-control" name="city" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="city name">
+                        </div>
+                        <div class="form-group">
+                            <label for="hname">Hospital Name</label>
+                            <select id="hname" name="hname" required class="form-control">
+                                <%
+                                    String q = "select hospital_id from reg_form where type='admin'";
+                                    Connection con = ConnectionProvider.createConnection();
+                                    Statement stmt = con.createStatement();
+                                    ResultSet rs = stmt.executeQuery(q);
+                                    while (rs.next()) {
+                                        String hname = rs.getString("hospital_id");
+                                %>
+                                <option selected value="<%=hname%>"><%=hname%></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+ 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div>
 
             <div class="sidebar bg-secondary">
-                <a href="searchhospital.jsp"><p class="text-white">Search Near Hospital</p></a>
+                <a href="searchhospital.jsp"><p class="text-white">Search Near Hospitals</p></a>
                 <!--<a href="#about"><p class="text-white">See Doctor Patient</p></a>-->
             </div>
 

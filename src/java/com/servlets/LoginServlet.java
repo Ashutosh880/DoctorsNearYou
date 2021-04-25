@@ -54,10 +54,11 @@ public class LoginServlet extends HttpServlet {
             }
 
         }
+        else
         if(d !=null)
         {
-            HttpSession s = request.getSession();
-            s.setAttribute("currentDoctor", d);
+            HttpSession h = request.getSession();
+            h.setAttribute("currentDoctor", d);
             
             response.sendRedirect("doctor.jsp");
         }

@@ -63,6 +63,7 @@ public class PatientDao {
                 patient.setBlood_pressure(rs.getString("blood_pressure"));
                 patient.setCity(rs.getString("city"));
                 patient.setAddress(rs.getString("address"));
+                patient.setHname(rs.getString("hospital_id"));
                 
                 
             }

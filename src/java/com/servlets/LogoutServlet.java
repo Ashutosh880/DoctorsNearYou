@@ -44,8 +44,9 @@ public class LogoutServlet extends HttpServlet {
             out.println("<body>");
             
             HttpSession s = request.getSession();
+            HttpSession h = request.getSession();
             s.removeAttribute("currentPatient");
-            
+            h.removeAttribute("currentDoctor");
             Message m = new Message("Logout Succesfully","success","alert-success");      
             s.setAttribute("msg", m);
             response.sendRedirect("login.jsp");
